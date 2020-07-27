@@ -2,7 +2,6 @@ import axios from 'axios'
 import qs from 'qs'
 import store from '../store/index'
 import { MessageBox } from 'element-ui'
-import { config } from 'vue/types/umd'
 /*
  * 一、request：
  *    1. 说明：封装对后台的请求，可以选择自动处理一些异常。
@@ -63,16 +62,31 @@ export const request = (url, params = {}, config = {}, autoErrorRes = true, auto
         return qs.stringify(params, { arrayFormat: 'indices' })
       }
   }
-  return axiosCustom(args).then((res) => {
-    // 自动处理返回格式错误
-    if (autoErrorData && res.data.hasOwnProperty('code') && res.data.code !== 1) {
-      console.error(res.data)
-      const errMsg = res.data.errorMessage || '未知的服务器错误, 请联系管理员'
-      const errCod = res.data.code
-      MessageBox.alert(errMsg, '请求异常:' + errCod, { confirmButtonText: '确定' })
-      return Promise.reject(res.data)
-    }
-  })
+
+  return axiosCustom(args).then(
+    (res) => {
+      // 自动处理返回格式错误
+      if (autoErrorData && Object.prototype.hasOwnProperty.call(res.data, 'code') && res.data.code !== 1) {
+        console.error(res.data)
+        const errMsg = res.data.errorMessage || '未知的服务器错误, 请联系管理员'
+        const errCod = res.data.code
+        MessageBox.alert(errMsg, '请求异常:' + errCod, { confirmButtonText: '确定' })
+        return Promise.reject(res.data)
+      }
+      return res.data
+    },
+    (error) => {
+      console.log(123);
+      // 自动处理网络请求错误
+      console.error(error)
+      error.response = error.response || {}
+      const errStatus = error.response.status || -100
+      if (autoErrorRes && error.message) {
+        MessageBox.alert('网络请求异常，请联系管理员！', '请求异常：' + errStatus, { confirmButtonText: '确定' })
+      }
+      return Promise.reject(error)
+    },
+  )
 }
 
 /* 使用 sessionStorage 缓存的请求 */
@@ -100,7 +114,7 @@ export const sessionRequest = (url, params = {}, config = {}, outTime = -1, auto
 }
 
 /* 使用 localStorage 缓存的请求 */
-export const localRequest = (url, params = {}, config = {}, config = {}, outTime = 604800, autoErrorRes = true, autoErrorData = true, autoCancel = true) => {
+export const localRequest = (url, params = {}, config = {}, outTime = 604800, autoErrorRes = true, autoErrorData = true, autoCancel = true) => {
   const itemKey = url + '#' + JSON.stringify(params) + JSON.stringify(config)
   let itemVal = localStorage.getItem(itemKey)
   const nowTime = new Date().getTime()
