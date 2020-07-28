@@ -3,7 +3,9 @@ import Mock from 'mockjs'
 
 export default {
   mockData() {
+    /* 本地根目录 (检测根目录最后面不能有'/') */
     const BASE_PATH = process.env.BASE_URL.endsWith('/') ? process.env.BASE_URL.substr(0, process.env.BASE_URL.length - 1) : process.env.BASE_URL
+
     Mock.mock(BASE_PATH + '/api/user/login', {
       code: 1,
       result: {
@@ -11,6 +13,10 @@ export default {
         name: 'blade',
         roles: ['admin'],
       },
+    })
+
+    Mock.mock(BASE_PATH + '/api/user/register', {
+      'code': 1
     })
   },
 }
