@@ -8,6 +8,7 @@ export default {
 
     Mock.mock(BASE_PATH + '/api/user/login', {
       code: 1,
+      token: 'fdsjfhjkdshfkldsajfjasdfbjsdkfhsdajfj',
       result: {
         id: '100001',
         name: 'blade',
@@ -16,7 +17,25 @@ export default {
     })
 
     Mock.mock(BASE_PATH + '/api/user/register', {
-      'code': 1
+      code: 1,
+    })
+
+    Mock.mock('/api/user/info', {
+      code: 1,
+      id: '100001',
+      name: 'blade',
+      roles: ['admin'],
+      permissions: [
+        {
+          // 一个页面权限一个对象，name为静态路由表里面的name
+          name: '/index',
+        },
+        {
+          name: '/user/show',
+          // permission存储数据级权限控制
+          permission: ['modify', 'delete'],
+        },
+      ],
     })
   },
 }

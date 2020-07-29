@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import store from '../store/index'
-import { MessageBox } from 'element-ui'
+import { MessageBox, Message } from 'element-ui'
 /*
  * 一、request：
  *    1. 说明：封装对后台的请求，可以选择自动处理一些异常。

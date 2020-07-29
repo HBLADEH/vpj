@@ -19,6 +19,20 @@ const staticRouter = [
     name: '首页',
     component: () => import('@/components/HelloWorld'),
   },
+  {
+    path: '/error/403',
+    name: '错误403',
+    component: () => import('@/views/error/AppError403'),
+  },
+  {
+    path: '/error/404',
+    name: '错误404',
+    component: () => import('@/views/error/AppError404'),
+  },{
+    path: '/error/500',
+    name: '错误500',
+    component: () => import('@/views/error/AppError500'),
+  },
 ]
 
 export default staticRouter
