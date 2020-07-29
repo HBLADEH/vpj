@@ -40,6 +40,11 @@ const axiosCustom = axios.create({
   withCredentials: true,
 })
 
+axiosCustom.interceptors.request.use(function(config) {
+  config.headers.token = localStorage.getItem('user-token')
+  return config
+})
+
 /* 普通请求 */
 export const request = (url, params = {}, config = {}, autoErrorRes = true, autoErrorData = true, autoCancel = true) => {
   if (autoCancel) {
@@ -65,6 +70,12 @@ export const request = (url, params = {}, config = {}, autoErrorRes = true, auto
 
   return axiosCustom(args).then(
     (res) => {
+      // 如果没有登录
+      if (res.data.type === 'login') {
+        Message({ message: '登录失败, 请重新登录', type: 'error' })
+        window.location.href = res.data.url || '#/login'
+      }
+
       // 自动处理返回格式错误
       if (autoErrorData && Object.prototype.hasOwnProperty.call(res.data, 'code') && res.data.code !== 1) {
         console.error(res.data)
@@ -76,7 +87,7 @@ export const request = (url, params = {}, config = {}, autoErrorRes = true, auto
       return res.data
     },
     (error) => {
-      console.log(123);
+      console.log(123)
       // 自动处理网络请求错误
       console.error(error)
       error.response = error.response || {}
