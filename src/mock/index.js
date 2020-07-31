@@ -31,7 +31,10 @@ export default {
           name: '/index',
         },
         {
-          name: '/user/show',
+          name: 'level4',
+        },
+        {
+          name: '/level4Detail',
           // permission存储数据级权限控制
           permission: ['modify', 'delete'],
         },
