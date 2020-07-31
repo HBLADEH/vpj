@@ -3,7 +3,7 @@
     <router-link to="/index">
       <div class="logo" :class="{'logo-hide': !openNav}">
         <img src="../../assets/logo.png" class="image">
-        <span class="text">PJ后台</span>
+        <span class="text">&nbsp;PJ后台</span>
       </div>
     </router-link>
     <div class="content">

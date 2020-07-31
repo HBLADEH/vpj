@@ -1,7 +1,7 @@
 <template>
   <el-row class="page">
     <el-col :span="24" style="position: absolute;">
-      <the-header :open-nav="openNav" @toggle-open="toogleOpen"></the-header>
+      <the-header :open-nav="openNav" @toggle-open="toggleOpen"></the-header>
     </el-col>
     <el-col :span="24" class="page-main">
       <the-sidebar :open-nav="openNav"></the-sidebar>
