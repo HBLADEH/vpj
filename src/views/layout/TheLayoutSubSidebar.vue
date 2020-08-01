@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <el-submenu v-on="listeners" :key="data.key" :index="data.key">
     <template slot="title">
       <i :class="data.attrs.subMenu.icon" v-if="data.attrs.subMenu.icon"></i>

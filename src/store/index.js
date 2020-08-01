@@ -34,6 +34,7 @@ export default new Vuex.Store({
   actions: {
     requestUserInfo({ commit }) {
       return requestUserInfo().then((user) => {
+        // console.log(user)
         commit('setUser', { user })
       })
     },

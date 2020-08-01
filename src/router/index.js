@@ -25,8 +25,11 @@ const routerInit = (permissions) => {
 /* 检测用户是否有权限访问页面 */
 const pagePermission = (permissions, to, next) => {
   const allowPage = permissions.some(function(v) {
+    console.log(v.name)
+
     return v.name === to.name
   })
+
   allowPage ? next() : next({ path: '/error/403' })
 }
 

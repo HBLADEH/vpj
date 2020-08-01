@@ -28,13 +28,13 @@ export default {
       permissions: [
         {
           // 一个页面权限一个对象，name为静态路由表里面的name
-          name: '/index',
+          name: 'index',
         },
         {
           name: 'level4',
         },
         {
-          name: '/level4Detail',
+          name: 'level4Detail',
           // permission存储数据级权限控制
           permission: ['modify', 'delete'],
         },

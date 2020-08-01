@@ -48,6 +48,7 @@ export const requestUserInfo = (params) => {
         }
       })
     }
+
     let accessMenu = []
     let menus = []
     staticRouter.forEach((r) => {
@@ -55,6 +56,7 @@ export const requestUserInfo = (params) => {
     })
     filterUserMenu(menus, accessMenu)
     res.accessMenu = accessMenu
-    return
+
+    return res
   })
 }
