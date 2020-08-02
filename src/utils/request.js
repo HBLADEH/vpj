@@ -87,7 +87,6 @@ export const request = (url, params = {}, config = {}, autoErrorRes = true, auto
       return res.data
     },
     (error) => {
-      console.log(123)
       // 自动处理网络请求错误
       console.error(error)
       error.response = error.response || {}

@@ -9,12 +9,12 @@ import './assets/css/common.scss'
 
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
-
+// console.log(process.env);
 // 根据环境变量来决定是否引入 mock (测试数据)
-if (process.env.NODE_ENV !== 'production' && !process.env.VUE_APP_BACK_END_URL) {
-  const Mock = require('./mock/index').default
-  Mock.mockData()
-}
+// if (process.env.NODE_ENV !== 'production' && !process.env.VUE_APP_BACK_END_URL) {
+//   const Mock = require('./mock/index').default
+//   Mock.mockData()
+// }
 
 new Vue({
   router,

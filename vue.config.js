@@ -16,7 +16,7 @@ module.exports = {
         return false
       } else {
         // 代理转发
-        const _basePath = process.process.env.VUE_APP_BACK_END_URL.endsWith('/') ? process.env.VUE_APP_BASE_PATH : process.env.VUE_APP_BASE_PATH + '/'
+        const _basePath = process.env.VUE_APP_BASE_PATH.endsWith('/') ? process.env.VUE_APP_BASE_PATH : process.env.VUE_APP_BASE_PATH + '/'
         const _path = _basePath + 'api/'
         const result = {}
         result[_path] = {
