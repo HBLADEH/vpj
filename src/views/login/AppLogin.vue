@@ -65,7 +65,11 @@ export default {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           this.logining = true
-          const loginParams = { username: this.ruleForm.account, password: sha256(this.ruleForm.checkPass) }
+          const loginParams = {
+            username: this.ruleForm.account,
+            // password: sha256(this.ruleForm.checkPass) }
+            password: this.ruleForm.checkPass
+          }
           /* 提交请求 */
           requestLogin(loginParams).then(data => {
             this.logining = false
@@ -78,7 +82,10 @@ export default {
               message: data.errorMsg,
               type: mtype
             })
-            // this.$router.push(this.fromUrl)
+            if (mtype == 'success') {
+
+              this.$router.push(this.fromUrl)
+            }
           }).catch(err => {
             this.logining = false
             console.log(err);

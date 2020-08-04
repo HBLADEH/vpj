@@ -54,10 +54,11 @@ export const request = (url, params = {}, config = {}, autoErrorRes = true, auto
     {
       method: 'post',
       url: url,
-      data: params,
+      data: qs.stringify(params),
     },
     config,
   )
+
   // 处理 url 传参
   if (!['put', 'post', 'patch'].includes(args.method.toLowerCase())) {
     args['params'] = args['params'] || args['data']
