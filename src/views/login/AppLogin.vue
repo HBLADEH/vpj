@@ -69,11 +69,16 @@ export default {
           /* 提交请求 */
           requestLogin(loginParams).then(data => {
             this.logining = false
+            let mtype = 'success'
+            // console.log(data);
+            if (data.errorCode !== 200) {
+              mtype = 'error'
+            }
             this.$message({
-              message: '登录成功!',
-              type: 'success'
+              message: data.errorMsg,
+              type: mtype
             })
-            this.$router.push(this.fromUrl)
+            // this.$router.push(this.fromUrl)
           }).catch(err => {
             this.logining = false
             console.log(err);
