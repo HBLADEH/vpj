@@ -38,7 +38,7 @@ export default {
       logining: false,
       fromUrl: '/',
       ruleForm: {
-        account: 'admin',
+        account: 'user1',
         checkPass: '123456'
       },
       passwordType: 'password',
