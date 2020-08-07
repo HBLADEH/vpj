@@ -45,7 +45,10 @@ export const requestUserInfo = (params) => {
             accessMenu.push(_aMenu)
           }
         } else {
-          res.permissions.some((p) => p.name === m.name) && accessMenu.push(m)
+          res.data.authorities.some((p) =>
+            p.authority === m.name
+          ) && accessMenu.push(m)
+          // res.permissions.some((p) => p.name === m.name) && accessMenu.push(m)
         }
       })
     }
@@ -56,8 +59,8 @@ export const requestUserInfo = (params) => {
       menus = r.menu ? menus.concat(r.children) : menus
     })
     filterUserMenu(menus, accessMenu)
-    res.accessMenu = accessMenu
 
+    res.accessMenu = accessMenu
     return res
   })
 }

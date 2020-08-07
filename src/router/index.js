@@ -50,11 +50,13 @@ router.beforeEach((to, from, next) => {
   }
   let permissions = router.app.$options.store.state.user.permissions
   /* 上次会话结束,重新获取用户信息 */
-  if (!permissions.legth) {
+  if (!permissions.length) {
     /* 获取用户信息和权限 */
     router.app.$options.store
       .dispatch('requestUserInfo')
       .then(() => {
+        console.log(router.app.$options.store.state.user)
+
         permissions = router.app.$options.store.state.user.permissions || []
         routerInit(permissions)
         pagePermission(permissions, to, next)
