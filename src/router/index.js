@@ -14,22 +14,22 @@ const router = new Router({
 
 /* 使用 router.meta 保存数据级权限 */
 const routerInit = (permissions) => {
+  // console.log(permissions)
   permissions.forEach((v) => {
-    let routeItem = router.match(v.name)
-    if (routeItem) {
-      routeItem.meta.permission = v.permission ? v.permission : []
-    }
+    let routeItem = router.match(v.authority)
+    // console.log(routeItem)
+
+    // if (routeItem) {
+    //   routeItem.meta.authority = v.authority ? v.authority : []
+    // }
   })
 }
 
 /* 检测用户是否有权限访问页面 */
 const pagePermission = (permissions, to, next) => {
   const allowPage = permissions.some(function(v) {
-    console.log(v.name)
-
-    return v.name === to.name
+    return v.authority === to.name
   })
-
   allowPage ? next() : next({ path: '/error/403' })
 }
 
@@ -49,14 +49,13 @@ router.beforeEach((to, from, next) => {
     return next()
   }
   let authorities = router.app.$options.store.state.user.authorities
-  console.log(router.app.$options.store);
+  // console.log(router.app.$options.store);
   /* 上次会话结束,重新获取用户信息 */
   if (!authorities.length) {
     /* 获取用户信息和权限 */
     router.app.$options.store
       .dispatch('requestUserInfo')
       .then(() => {
-
         authorities = router.app.$options.store.state.user.authorities || []
         routerInit(authorities)
         // console.log(authorities)

@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {
-      name: '',
+      username: '',
       authorities: [],
       accessMenu: [],
     },
@@ -18,13 +18,13 @@ export default new Vuex.Store({
   },
   mutations: {
     setUser(state, { user }) {
-      state.user.name = user.name
-      state.user.permissions = user.permissions
+      state.user.username = user.username
+      state.user.authorities = user.authorities
       state.user.accessMenu = user.accessMenu
     },
     deleteUser(state) {
-      state.user.name = ''
-      state.user.permissions = []
+      state.user.username = ''
+      state.user.authorities = []
       state.user.accessMenu = []
     },
     updateSource(state, { source }) {

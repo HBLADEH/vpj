@@ -63,7 +63,7 @@ export const requestUserInfo = (params) => {
     filterUserMenu(menus, accessMenu)
     res.accessMenu = accessMenu
     // res.permissions = res.data.authorities
-    console.log(res);
+    // console.log(res);
     return res.data
   })
 }
