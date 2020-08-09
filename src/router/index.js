@@ -48,18 +48,20 @@ router.beforeEach((to, from, next) => {
   if (whiteList.indexOf(to.fullPath) >= 0) {
     return next()
   }
-  let permissions = router.app.$options.store.state.user.permissions
+  let authorities = router.app.$options.store.state.user.authorities
+  console.log(router.app.$options.store);
   /* 上次会话结束,重新获取用户信息 */
-  if (!permissions.length) {
+  if (!authorities.length) {
     /* 获取用户信息和权限 */
     router.app.$options.store
       .dispatch('requestUserInfo')
       .then(() => {
-        console.log(router.app.$options.store.state.user)
 
-        permissions = router.app.$options.store.state.user.permissions || []
-        routerInit(permissions)
-        pagePermission(permissions, to, next)
+        authorities = router.app.$options.store.state.user.authorities || []
+        routerInit(authorities)
+        // console.log(authorities)
+
+        pagePermission(authorities, to, next)
       })
       .catch((err) => {
         /* 获取用户信息异常 */

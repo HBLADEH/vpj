@@ -30,6 +30,8 @@ export const requestRegister = (params) => {
  */
 export const requestUserInfo = (params) => {
   return request('/api/user/info', params).then((res) => {
+    // console.log('res:');
+    // console.log(res);
     // 过滤菜单
     const filterUserMenu = function(menus, accessMenu) {
       menus.forEach((m) => {
@@ -59,8 +61,9 @@ export const requestUserInfo = (params) => {
       menus = r.menu ? menus.concat(r.children) : menus
     })
     filterUserMenu(menus, accessMenu)
-
     res.accessMenu = accessMenu
-    return res
+    // res.permissions = res.data.authorities
+    console.log(res);
+    return res.data
   })
 }

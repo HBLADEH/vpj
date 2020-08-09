@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     user: {
       name: '',
-      permissions: [],
+      authorities: [],
       accessMenu: [],
     },
     source: {
