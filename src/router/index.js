@@ -25,7 +25,7 @@ const routerInit = (permissions) => {
   })
 }
 
-/* 检测用户是否有权限访问页面 */
+/* 检测用户是否有权限访问页面  */
 const pagePermission = (permissions, to, next) => {
   const allowPage = permissions.some(function(v) {
     return v.authority === to.name
