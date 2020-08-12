@@ -64,8 +64,9 @@ router.beforeEach((to, from, next) => {
       })
       .catch((err) => {
         /* 获取用户信息异常 */
-        console.error(err)
-        return next({ path: '/error/500' })
+        // console.error(err)
+        // return next({ path: '/error/500' })
+        return next({ path: '/login' })
       })
   }
 })

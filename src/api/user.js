@@ -29,7 +29,7 @@ export const requestRegister = (params) => {
  * @param {*} params
  */
 export const requestUserInfo = (params) => {
-  return request('/api/user/info', params).then((res) => {
+  return request('/api/user/info', params,{},false).then((res) => {
     // console.log('res:');
     // console.log(res);
     // 过滤菜单
