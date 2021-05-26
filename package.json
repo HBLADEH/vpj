@@ -10,7 +10,7 @@
   "dependencies": {
     "autoprefixer": "^9.8.5",
     "axios": "^0.19.2",
-    "browserslist": "^4.13.0",
+    "browserslist": "^4.16.5",
     "caniuse-lite": "^1.0.30001105",
     "core-js": "^3.6.5",
     "crypto-js": "^4.0.0",
